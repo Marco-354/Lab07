@@ -37,9 +37,27 @@ class View:
 
         # --- Sezione 2: Filtraggio ---
         # TODO
+        self.dd_biblioteca = ft.Dropdown(
+            label="Biblioteca",
+            hint_text="Seleziona una biblioteca",
+            width=350,
+            options=[],
+            on_select=self.controller.handle_select_biblioteca)
+
+        self.dd_genere = ft.Dropdown(
+            label="Genere",
+            hint_text="Seleziona un genere",
+            width=350,
+            options=[],
+            on_select=self.controller.handle_select_genere)
 
         # Sezione 3: Libri
         # TODO
+        self.btn_mostra_libri = ft.Button(
+            content="Mostra Libri",
+            on_click=self.controller.handle_mostra_libri)
+
+        self.lv_libri = ft.ListView(expand=False, spacing=10, padding=10, auto_scroll=True)
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -54,10 +72,18 @@ class View:
 
             # Sezione 2: Filtraggio
             # TODO
+            ft.Row(
+                controls=[self.dd_biblioteca, self.dd_genere],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=20),
 
             # Sezione 3: Libri
             # TODO
-        )
+            ft.Row(
+                controls=[self.btn_mostra_libri],
+                alignment=ft.MainAxisAlignment.CENTER),
+            ft.Divider(),
+            self.lv_libri)
 
         self.page.scroll = "adaptive"
         self.page.update()
