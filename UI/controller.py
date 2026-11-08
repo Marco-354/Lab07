@@ -25,7 +25,6 @@ class Controller:
         self._view.dd_genere.options.clear()
 
         # 2. Recupero i dati dal model
-        # (se il tuo model ha nomi diversi, cambiali qui!)
         biblioteche = self._model.get_biblioteche()
         generi = self._model.get_generi()
 
@@ -52,7 +51,7 @@ class Controller:
     # AZIONE: MOSTRA LIBRI
     # TODO
     def handle_mostra_libri(self, e):
-        # Se non si seleziona ninete lancio errore
+        # Se non si seleziona niente lancio errore
         if self.biblioteca_selezionata is None or self.genere_selezionato is None:
             self._view.show_alert("Seleziona sia una biblioteca che un genere prima di cercare!")
             return
@@ -65,7 +64,6 @@ class Controller:
         if len(libri) == 0:
             self._view.lv_libri.controls.append(ft.Text("Nessun libro trovato per questa ricerca."))
         else:
-            # Altrimenti li stampo tutti
             for libro in libri:
                 self._view.lv_libri.controls.append(ft.Text(f"📚 {libro}"))
 
